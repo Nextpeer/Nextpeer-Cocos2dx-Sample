@@ -1,0 +1,3 @@
+[submodule "SpaceJump/Classes/Nextpeer"]
+	path = SpaceJump/Classes/Nextpeer
+	url = https://github.com/Nextpeer/Nextpeer-Cocos2dx
