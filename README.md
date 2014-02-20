@@ -1,5 +1,4 @@
 # Nextpeer-Cocos2dx-Sample
-========================
 
 [Nextpeer](http://nextpeer.com) is the easiest way to play with your friends on mobile devices. Get the SDK and start challenging the world.
 
