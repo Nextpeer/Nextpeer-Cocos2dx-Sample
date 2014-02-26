@@ -40,6 +40,7 @@
 									<listOptionValue builtIn="false" value="/Users/itamar/Innobell/Nextpeer-Cocos2dx-Sample/cocos2d-x-2.2/cocos2dx"/>
 									<listOptionValue builtIn="false" value="/Users/itamar/Innobell/Nextpeer-Cocos2dx-Sample/cocos2d-x-2.2/cocos2dx/include"/>
 									<listOptionValue builtIn="false" value="/Users/itamar/android-sdk-macosx/AndroidNDK/sources/cxx-stl/stlport/stlport"/>
+									<listOptionValue builtIn="false" value="../TEST"/>
 								</option>
 								<option id="org.eclipse.cdt.build.core.settings.holder.symbols.1267721019" name="Symbols" superClass="org.eclipse.cdt.build.core.settings.holder.symbols" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="&quot;COCOS2DX_ROOT=${ProjDirPath}/../../cocos2d-x-2.2/&quot;"/>
