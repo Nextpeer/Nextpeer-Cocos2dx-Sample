@@ -9,4 +9,4 @@ Feel free to contact us on any question. [support@nextpeer.com](mailto:support@n
 
 ###Android port
 In order to test the Android project, you'll be have to set the C++ build enviroment variables to the right location.
-Right click on the project "NextpeerSample" -> Properties -> C/C++ Build -> Enviroment. Make sure each variable points to the right path (such as NDK_ROOT, ANDROID_SDK_ROOT and so on).
+Right click on the project "NextpeerSample" -> Properties -> C/C++ Build -> Environment. Make sure each variable points to the right path (such as NDK_ROOT, ANDROID_SDK_ROOT and so on).
