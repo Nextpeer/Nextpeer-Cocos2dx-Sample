@@ -20,6 +20,8 @@ DerivedData
 *.swp
 *.lock
 profile
+*.o
+*.d
 
 # built application files
 *.apk
