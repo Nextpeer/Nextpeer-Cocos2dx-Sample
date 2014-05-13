@@ -16,6 +16,7 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
+		4E1767AC19210E990055A4A1 /* NextpeerTournamentSupport.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4E1767AB19210E990055A4A1 /* NextpeerTournamentSupport.cpp */; };
 		4E200E1918B4AF4600730660 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E200E1418B4AF4600730660 /* Default-568h@2x.png */; };
 		4E200E1C18B4AF4600730660 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E200E1718B4AF4600730660 /* Default.png */; };
 		4E200E1D18B4AF4600730660 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E200E1818B4AF4600730660 /* Default@2x.png */; };
@@ -59,7 +60,6 @@
 		4EC4D0A818B64B50003B97D9 /* Nextpeer_iOSDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4EC4CF2F18B64B4E003B97D9 /* Nextpeer_iOSDelegate.mm */; };
 		4EC4D1E718B64B50003B97D9 /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = 4EC4D09318B64B50003B97D9 /* CHANGELOG.md */; };
 		4EC4D1E818B64B50003B97D9 /* Nextpeer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EC4D09418B64B50003B97D9 /* Nextpeer.framework */; };
-		4EC4D1E918B64B50003B97D9 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4EC4D09518B64B50003B97D9 /* README.txt */; };
 		4EC4D1EC18B64B50003B97D9 /* NPResources_iPad_iPhone_Portrait.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4EC4D09918B64B50003B97D9 /* NPResources_iPad_iPhone_Portrait.bundle */; };
 		4EC4D1F618B65625003B97D9 /* libcocos2dx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EC4D1F518B65130003B97D9 /* libcocos2dx.a */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
@@ -106,6 +106,8 @@
 		1D6058910D05DD3D006BFB54 /* SpaceJump.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpaceJump.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		4E1767AA19210E990055A4A1 /* NextpeerTournamentSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NextpeerTournamentSupport.h; sourceTree = "<group>"; };
+		4E1767AB19210E990055A4A1 /* NextpeerTournamentSupport.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NextpeerTournamentSupport.cpp; sourceTree = "<group>"; };
 		4E200E1418B4AF4600730660 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = SOURCE_ROOT; };
 		4E200E1718B4AF4600730660 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = SOURCE_ROOT; };
 		4E200E1818B4AF4600730660 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = SOURCE_ROOT; };
@@ -173,7 +175,6 @@
 		4EC4CF2F18B64B4E003B97D9 /* Nextpeer_iOSDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Nextpeer_iOSDelegate.mm; sourceTree = "<group>"; };
 		4EC4D09318B64B50003B97D9 /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGELOG.md; sourceTree = "<group>"; };
 		4EC4D09418B64B50003B97D9 /* Nextpeer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Nextpeer.framework; sourceTree = "<group>"; };
-		4EC4D09518B64B50003B97D9 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		4EC4D09918B64B50003B97D9 /* NPResources_iPad_iPhone_Portrait.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = NPResources_iPad_iPhone_Portrait.bundle; sourceTree = "<group>"; };
 		4EC4D1F018B6512F003B97D9 /* cocos2dx.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = cocos2dx.xcodeproj; path = "../../cocos2d-x-2.2/cocos2dx/proj.ios/cocos2dx.xcodeproj"; sourceTree = "<group>"; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -416,6 +417,8 @@
 				4EC4CF2818B64B4E003B97D9 /* NextpeerPlayer.h */,
 				4EC4CF2918B64B4E003B97D9 /* Rand.cpp */,
 				4EC4CF2A18B64B4E003B97D9 /* Rand.h */,
+				4E1767AA19210E990055A4A1 /* NextpeerTournamentSupport.h */,
+				4E1767AB19210E990055A4A1 /* NextpeerTournamentSupport.cpp */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -453,7 +456,6 @@
 			children = (
 				4EC4D09318B64B50003B97D9 /* CHANGELOG.md */,
 				4EC4D09418B64B50003B97D9 /* Nextpeer.framework */,
-				4EC4D09518B64B50003B97D9 /* README.txt */,
 				4EC4D09618B64B50003B97D9 /* Resources */,
 			);
 			path = iOS;
@@ -572,7 +574,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4EC4CEE018B51A93003B97D9 /* ipadhd in Resources */,
-				4EC4D1E918B64B50003B97D9 /* README.txt in Resources */,
 				4EC4CF0F18B61B46003B97D9 /* Icon@2x.png in Resources */,
 				4EC4CEDF18B51A93003B97D9 /* ipad in Resources */,
 				4EC4CF0E18B61B46003B97D9 /* Icon.png in Resources */,
@@ -615,6 +616,7 @@
 				4E20167418B4BED000730660 /* Hero.cpp in Sources */,
 				4EC4D0A618B64B50003B97D9 /* Rand.cpp in Sources */,
 				1AFAF8B716D35DE700DB1158 /* AppDelegate.cpp in Sources */,
+				4E1767AC19210E990055A4A1 /* NextpeerTournamentSupport.cpp in Sources */,
 				1AC3624916D4A1E8000847F2 /* AppController.mm in Sources */,
 				1AC3624B16D4A1E8000847F2 /* main.m in Sources */,
 				1AFCDA8216D4A25900906EA6 /* RootViewController.mm in Sources */,
