@@ -12,7 +12,7 @@
 USING_NS_CC;
 using namespace std;
 
-class PlayerData : public CCObject {
+class PlayerData : public Ref {
 private:
     string _playerId;
     string _playerName;

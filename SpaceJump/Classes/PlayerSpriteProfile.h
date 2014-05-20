@@ -21,7 +21,7 @@ typedef enum
 } GamePlayerProfileType;
 
 
-class GamePlayerProfile : public CCObject {
+class GamePlayerProfile : public Ref {
 public:
     virtual GamePlayerProfileType profileType() = 0;
     virtual const char* assetName() = 0;
@@ -84,7 +84,7 @@ public:
 class GamePlayerProfileFactory {
 public:
     static GamePlayerProfile* createProfileByTypeOrNull(GamePlayerProfileType profileType);
-    static CCArray* allGamePlayerProfiles();
+    static __Array* allGamePlayerProfiles();
 };
 
 class CurrentPlayerGameProfile {

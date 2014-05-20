@@ -18,7 +18,7 @@ class OpponentIsReadyMessage;
 /* Flow:
  tournament start -> loading level -> loading opponents sprites -> letting the other opponents know i'm ready (waiting for their ready call backs)
  */
-class MultiplayerGameState : public CCObject
+class MultiplayerGameState : public Ref
 {
 public:
     static MultiplayerGameState* create();
@@ -26,7 +26,7 @@ public:
     void reset();
     void listenForIncomingPackets();
     void addOpponent(PlayerData *opponent);
-    CCArray* getAllOpponents();
+    __Array* getAllOpponents();
 
     void dispatchUpdateForHero(Hero* hero);
     void dispatchIsReadyForHero(Hero* hero);
@@ -40,10 +40,10 @@ private:
     void applyOpponentPositionHeightUpdate(OpponentPositionHeightUpdate* update);
     void applyOpponentIsReady(OpponentIsReadyMessage *ready);
     
-    void incomingNextpeerDataPacket(CCObject* packet);
+    void incomingNextpeerDataPacket(Ref* packet);
     
-    CCDictionary* _opponentsData; // The Opponent raw data (as we get it from Nextpeer)
-    CCDictionary* _opponentsSprite; // Opponent sprites
+    __Dictionary* _opponentsData; // The Opponent raw data (as we get it from Nextpeer)
+    __Dictionary* _opponentsSprite; // Opponent sprites
  };
 
 

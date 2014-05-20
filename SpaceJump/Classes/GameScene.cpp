@@ -35,13 +35,13 @@ enum
 #define kMaxBonusStep		40
 #define HUD_ITEMS_SPACING 10.0f
 
-CCScene* GameScene::scene(MultiplayerGameState *gameState)
+Scene* GameScene::createScene(MultiplayerGameState *gameState)
 {
-	CCScene * scene = NULL;
+	Scene * scene = NULL;
 	do
 	{
 		// 'scene' is an autorelease object
-		scene = CCScene::create();
+		scene = Scene::create();
 		CC_BREAK_IF(! scene);
         
 		// 'layer' is an autorelease object
@@ -58,6 +58,7 @@ CCScene* GameScene::scene(MultiplayerGameState *gameState)
 
 GameScene::~GameScene()
 {
+    Device::setAccelerometerEnabled(false);
     CC_SAFE_RELEASE_NULL(_hero);
     CC_SAFE_RELEASE_NULL(_multiplayerGameState);
 }
@@ -71,7 +72,7 @@ bool GameScene::init(MultiplayerGameState *gameState)
         //////////////////////////////
         // 1. super init first
         
-        CC_BREAK_IF(! CCLayerColor::initWithColor(ccc4(176.0, 226.0, 255.0, 200.0)));
+        CC_BREAK_IF(! LayerColor::initWithColor(Color4B(176.0, 226.0, 255.0, 200.0)));
         
         _multiplayerGameState = gameState;
         _multiplayerGameState->retain();
@@ -85,18 +86,36 @@ bool GameScene::init(MultiplayerGameState *gameState)
 	return bRet;
 }
 
+void GameScene::onEnter()
+{
+    LayerColor::onEnter();
+    
+    // Add touch/accelerometer events
+    Device::setAccelerometerEnabled(true);
+    auto accelerometerListener = EventListenerAcceleration::create(CC_CALLBACK_2(GameScene::onAcceleration, this));
+    _eventDispatcher->addEventListenerWithSceneGraphPriority(accelerometerListener, this);
+    
+    // Register Touch Event
+    auto touchListener = EventListenerTouchOneByOne::create();
+    touchListener->setSwallowTouches(true);
+    touchListener->onTouchBegan = CC_CALLBACK_2(GameScene::onTouchBegan, this);
+    touchListener->onTouchEnded = CC_CALLBACK_2(GameScene::onTouchEnded, this);
+    
+    _eventDispatcher->addEventListenerWithSceneGraphPriority(touchListener, this);
+}
+
 void GameScene::createScreen () {
     
-    CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("ingame.plist");
-    _gameBatchNode = CCSpriteBatchNode::create("ingame.png", 200);
+    SpriteFrameCache::getInstance()->addSpriteFramesWithFile("ingame.plist");
+    _gameBatchNode = SpriteBatchNode::create("ingame.png", 200);
     this->addChild(_gameBatchNode);
     
-    CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("characters.plist");
-    _charactersBatchNode = CCSpriteBatchNode::create("characters.png", 200);
+    SpriteFrameCache::getInstance()->addSpriteFramesWithFile("characters.plist");
+    _charactersBatchNode = SpriteBatchNode::create("characters.png", 200);
     this->addChild(_charactersBatchNode);
     
     //get screen size
-    _screenSize = CCDirector::sharedDirector()->getWinSize();
+    _screenSize = Director::getInstance()->getWinSize();
     _hero = Hero::create();
     _hero->retain();
     _charactersBatchNode->addChild(_hero);
@@ -108,31 +127,26 @@ void GameScene::createScreen () {
     initPlatforms();
     
     // Create the bonus sprites
-    CCSprite *bonus = CCSprite::createWithSpriteFrameName("power_up_box.png");
+    Sprite *bonus = Sprite::createWithSpriteFrameName("power_up_box.png");
     bonus->setTag(kBonusStartTag);
     _gameBatchNode->addChild(bonus);
     bonus->setVisible(false);
     
     // Create the Score Label
-    _scoreLabel = CCLabelBMFont::create("0",  "font.fnt");
+    _scoreLabel = Label::createWithBMFont("font.fnt", "0");
     this->addChild(_scoreLabel);
     
     // Center the label
-    _scoreLabel->setPosition(ccp(_screenSize.width/2, 30));
+    _scoreLabel->setPosition(Point(_screenSize.width/2, 30));
     
-    CCNode* hudX = CCSprite::createWithSpriteFrameName("hud_x.png");
-    CCMenuItemSprite* endGame = CCMenuItemSprite::create(hudX, hudX, this, menu_selector(GameScene::menuCallbackEndGame));
-    CCMenu *leaveGameHudMenu = CCMenu::create(endGame, NULL);
-    leaveGameHudMenu->setPosition(ccp(_screenSize.width - hudX->getContentSize().width/2 - HUD_ITEMS_SPACING, _screenSize.height - hudX->getContentSize().height/2 - HUD_ITEMS_SPACING));
+    Node* hudX = Sprite::createWithSpriteFrameName("hud_x.png");
+    MenuItemSprite* endGame = MenuItemSprite::create(hudX, hudX, CC_CALLBACK_1(GameScene::menuCallbackEndGame, this));
+    Menu *leaveGameHudMenu = Menu::create(endGame, NULL);
+    leaveGameHudMenu->setPosition(Point(_screenSize.width - hudX->getContentSize().width/2 - HUD_ITEMS_SPACING, _screenSize.height - hudX->getContentSize().height/2 - HUD_ITEMS_SPACING));
     addChild(leaveGameHudMenu);
     
     //create main loop
     this->schedule(schedule_selector(GameScene::update));
-    
-    // Enable the touch events
-    setTouchEnabled(true);
-    // Enable accelerometer events
-    setAccelerometerEnabled(true);
     
     // Let the other clients know that this player is in the game
     _multiplayerGameState->dispatchIsReadyForHero(_hero);
@@ -160,7 +174,7 @@ void GameScene::update(float dt)
     
 	// Calculate the max and min x values for the hero
 	// based on the screen and hero widths
-	CCSize hero_size = _hero->getContentSize();
+	Size hero_size = _hero->getContentSize();
 	float max_x = (float)_screenSize.width - hero_size.width/2;
 	float min_x = hero_size.width/2;
 	
@@ -176,7 +190,7 @@ void GameScene::update(float dt)
 	
 	////////////////////////////////////////////////////////////////////////////
 	// Handle the bonus scoring
-	CCSprite *bonus = (CCSprite*)_gameBatchNode->getChildByTag(kBonusStartTag);
+	Sprite *bonus = (Sprite*)_gameBatchNode->getChildByTag(kBonusStartTag);
     
 	// If bonus is visible then see if the hero is within range to get the bonus
 	if(bonus->isVisible())
@@ -191,9 +205,9 @@ void GameScene::update(float dt)
             updateScore();
             
 			// Highlight the score with some actions to celebrate the bonus win
-			CCActionInterval* a1 = CCScaleTo::create(0.2f, 1.5f, 0.8f);
-			CCActionInterval* a2 = CCScaleTo::create(0.2f, 1.0f, 1.0f);
-			_scoreLabel->runAction(CCSequence::create(a1, a2, a1, a2, a1, a2, NULL));
+			ActionInterval* a1 = ScaleTo::create(0.2f, 1.5f, 0.8f);
+			ActionInterval* a2 = ScaleTo::create(0.2f, 1.0f, 1.0f);
+			_scoreLabel->runAction(Sequence::create(a1, a2, a1, a2, a1, a2, NULL));
             
 			// Reset the bonus to another platform
 			resetBonus();
@@ -206,7 +220,7 @@ void GameScene::update(float dt)
 		// Search through all the platforms and compare the hero's position with the platfor position
 		for(int t = kPlatformsStartTag; t < kPlatformsStartTag + kNumPlatforms; t++)
 		{
-			CCSprite *platform = (CCSprite*)_gameBatchNode->getChildByTag(t);
+			Sprite *platform = (Sprite*)_gameBatchNode->getChildByTag(t);
             
 			if(_hero->boundingBox().intersectsRect(platform->boundingBox()))
 			{
@@ -236,9 +250,9 @@ void GameScene::update(float dt)
 		// Move the clouds vertically and reset if necessary
 		for (int t = kCloudsStartTag; t < kCloudsStartTag + kNumClouds; t++)
 		{
-			CCSprite *cloud = (CCSprite*)_gameBatchNode->getChildByTag(t);
+			Sprite *cloud = (Sprite*)_gameBatchNode->getChildByTag(t);
             
-			CCPoint pos = cloud->getPosition();
+			Point pos = cloud->getPosition();
             
 			// Calculate new position for cloud
 			pos.y -= delta * cloud->getScaleY() * 0.8f;
@@ -258,12 +272,12 @@ void GameScene::update(float dt)
 		// Move the platforms vertically and reset if necessary
 		for (int t = kPlatformsStartTag; t < kPlatformsStartTag + kNumPlatforms; t++)
 		{
-			CCSprite *platform = (CCSprite*)_gameBatchNode->getChildByTag(t);
+			Sprite *platform = (Sprite*)_gameBatchNode->getChildByTag(t);
 			
-			CCPoint pos = platform->getPosition();
+			Point pos = platform->getPosition();
             
 			// Calculate new position for platform
-			pos = ccp(pos.x, pos.y - delta);
+			pos = Point(pos.x, pos.y - delta);
             
 			// If the platform is off the screen then reset the platform else set its new position
 			if(pos.y < - platform->getContentSize().height/2)
@@ -280,7 +294,7 @@ void GameScene::update(float dt)
 		// If the bonus is visible then adjust it's y position
 		if(bonus->isVisible())
 		{
-			CCPoint pos = bonus->getPosition();
+			Point pos = bonus->getPosition();
             
 			// Calculate new position of bonus
 			pos.y -= delta;
@@ -318,7 +332,7 @@ void GameScene::updateScore() {
     _scoreLabel->setString(scoreStr);
 }
 
-void GameScene::menuCallbackEndGame(CCObject* pSender) {
+void GameScene::menuCallbackEndGame(Ref* pSender) {
     
     _hero->showHurtAnimation();
     
@@ -330,7 +344,7 @@ void GameScene::menuCallbackEndGame(CCObject* pSender) {
     }
     
     // Switch back to the main menu
-    CCDirector::sharedDirector()->replaceScene(MainMenuScene::scene());
+    Director::getInstance()->replaceScene(MainMenuScene::createScene());
 }
 
 // Initializes everything and then starts the game by setting the gameSuspend
@@ -363,7 +377,7 @@ void GameScene::initPlatform()
 {
     char szName[100] = {0};
     sprintf(szName, PLATFORMS_FILENAME_FORMAT, (int)Rand::generate(0, PLATFORMS_NUMBER));
-    CCSprite *platform = CCSprite::createWithSpriteFrame(CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(szName));
+    Sprite *platform = Sprite::createWithSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName(szName));
     _gameBatchNode->addChild(platform, 3, _currentPlatformTag);
 }
 
@@ -387,7 +401,7 @@ void GameScene::initCloud() {
     
     char szName[100] = {0};
     sprintf(szName, CLOUDS_FILENAME_FORMAT, (int)Rand::generate(0, CLOUDS_NUMBER));
-    CCSprite *cloud = CCSprite::createWithSpriteFrame(CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(szName));
+    Sprite *cloud = Sprite::createWithSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName(szName));
 	_gameBatchNode->addChild(cloud, 3, _currentCloudTag);
 	cloud->setOpacity(128);
 }
@@ -400,9 +414,9 @@ void GameScene::resetClouds() {
 	{
 		resetCloud();
         
-		CCSprite *cloud = (CCSprite*)_gameBatchNode->getChildByTag(_currentCloudTag);
-		CCPoint pos = cloud->getPosition();
-		pos.y -= (float)CCDirector::sharedDirector()->getWinSize().height;
+		Sprite *cloud = (Sprite*)_gameBatchNode->getChildByTag(_currentCloudTag);
+		Point pos = cloud->getPosition();
+		pos.y -= (float)Director::getInstance()->getWinSize().height;
 		cloud->setPosition(pos);
 		_currentCloudTag++;
 	}
@@ -410,7 +424,7 @@ void GameScene::resetClouds() {
 
 // For each cloud, randomly size and place them
 void GameScene::resetCloud() {
-	CCSprite *cloud = (CCSprite*)_gameBatchNode->getChildByTag(_currentCloudTag);
+	Sprite *cloud = (Sprite*)_gameBatchNode->getChildByTag(_currentCloudTag);
 	
 	// Calculate a random distance for this cloud
 	float distance = Rand::generate() % 20 + 5;
@@ -425,15 +439,15 @@ void GameScene::resetCloud() {
 	// randomly invert the X scale for some of the clouds
 	if(Rand::generate() % 2 == 1) cloud->setScaleX(-cloud->getScaleX());
 	
-	CCSize size = cloud->getContentSize();
+	Size size = cloud->getContentSize();
     
 	float scaled_width = size.width * scale;
     
 	// Randomly place each cloud within our view
-	float x = Rand::generate() % (int)(CCDirector::sharedDirector()->getWinSize().width +  (int)scaled_width) - scaled_width/2;
-	float y = Rand::generate() % (int)(CCDirector::sharedDirector()->getWinSize().height - (int)scaled_width) + scaled_width/2 + CCDirector::sharedDirector()->getWinSize().height;
+	float x = Rand::generate() % (int)(Director::getInstance()->getWinSize().width +  (int)scaled_width) - scaled_width/2;
+	float y = Rand::generate() % (int)(Director::getInstance()->getWinSize().height - (int)scaled_width) + scaled_width/2 + Director::getInstance()->getWinSize().height;
     
-	cloud->setPosition(ccp(x,y));
+	cloud->setPosition(Point(x,y));
 }
 
 
@@ -473,12 +487,12 @@ void GameScene::resetPlatform()
 		}
 	}
 	
-	CCSprite *platform = (CCSprite*)_gameBatchNode->getChildByTag(_currentPlatformTag);
+	Sprite *platform = (Sprite*)_gameBatchNode->getChildByTag(_currentPlatformTag);
     
 	if ( Rand::generate() % 2 == 1) platform->setScaleX(-1.0f);
     
 	float x;
-	CCSize size = platform->getContentSize();
+	Size size = platform->getContentSize();
     
 	// If the current platform is the first one initialized then just center it
 	if (_currentPlatformY == (float)kStartingCurrentPlatformY)
@@ -490,14 +504,14 @@ void GameScene::resetPlatform()
 		x = Rand::generate() % (int)(_screenSize.width -(int)size.width) + size.width/2;
 	}
 	
-	platform->setPosition(ccp(x, _currentPlatformY));
+	platform->setPosition(Point(x, _currentPlatformY));
 	_platformCount++;
     
 	// If the platform is to have to bonus then put it there.
 	if (_platformCount == _currentBonusPlatformIndex)
 	{
-		CCSprite *bonus = (CCSprite*)_gameBatchNode->getChildByTag(kBonusStartTag);
-		bonus->setPosition(ccp(x, _currentPlatformY+platform->getContentSize().height/2 + bonus->getContentSize().height/2));
+		Sprite *bonus = (Sprite*)_gameBatchNode->getChildByTag(kBonusStartTag);
+		bonus->setPosition(Point(x, _currentPlatformY+platform->getContentSize().height/2 + bonus->getContentSize().height/2));
 		bonus->setVisible(true);
 	}
 }
@@ -506,8 +520,8 @@ void GameScene::resetPlatform()
 void GameScene::resetHero()
 {
 	// Place the hero in center
-	_heroPosition.x = (float) CCDirector::sharedDirector()->getWinSize().width/2;
-	_heroPosition.y = (float) CCDirector::sharedDirector()->getWinSize().width/2;
+	_heroPosition.x = (float) Director::getInstance()->getWinSize().width/2;
+	_heroPosition.y = (float) Director::getInstance()->getWinSize().width/2;
 	_hero->setPosition(_heroPosition);
 	
 	_heroVelocity.x = 0;
@@ -523,7 +537,7 @@ void GameScene::resetHero()
 // Reset the bonus types based on the current score
 void GameScene::resetBonus()
 {
-	CCSprite *bonus = (CCSprite*)_gameBatchNode->getChildByTag(kBonusStartTag);
+	Sprite *bonus = (Sprite*)_gameBatchNode->getChildByTag(kBonusStartTag);
     
 	// Set the bonus to not be visible
 	bonus->setVisible(false);
@@ -542,35 +556,29 @@ void GameScene::jump()
     _hero->showJumpAnimation();
 }
 
-void GameScene::registerWithTouchDispatcher(void)
+bool GameScene::onTouchBegan(Touch* touch, Event* unused_event)
 {
-    CCDirector* pDirector = CCDirector::sharedDirector();
-    pDirector->getTouchDispatcher()->addTargetedDelegate(this, kCCMenuHandlerPriority + 1, true);
-}
-
-bool GameScene::ccTouchBegan(CCTouch* touch, CCEvent* event)
-{
-	return true;
+    return true;
 }
 
 /////////////////////////////////////////////////////////
 // Touch on left side of screen moves player left
 // Touch on right side of screen moves player right
-void GameScene::ccTouchEnded(CCTouch* touch, CCEvent* event)
+void GameScene::onTouchEnded(Touch *touch, Event *unused_event)
 {
-	CCPoint touchLocation = touch->getLocationInView(  );
-	touchLocation = CCDirector::sharedDirector()->convertToGL(touchLocation);
+	Point touchLocation = touch->getLocationInView();
+	touchLocation = Director::getInstance()->convertToGL(touchLocation);
 	touchLocation =  convertToNodeSpace(touchLocation);
     
-	float touchCenter =  CCDirector::sharedDirector()->getWinSize().width/2 - touchLocation.x;
+	float touchCenter =  Director::getInstance()->getWinSize().width/2 - touchLocation.x;
 	float accel_filter = 0.1f;
 	_heroVelocity.x = _heroVelocity.x * accel_filter - touchCenter;
 }
 
 /////////////////////////////////////////////////////////
 // Acceleramoter routine to move the player object
-void GameScene::didAccelerate(CCAcceleration* pAccelerationValue)
+void GameScene::onAcceleration(Acceleration* acc, Event* unused_event)
 {
 	float accel_filter = 0.1f;
-	_heroVelocity.x = _heroVelocity.x * accel_filter + pAccelerationValue->x * (1.0f - accel_filter) * 500.0f;
+	_heroVelocity.x = _heroVelocity.x * accel_filter + acc->x * (1.0f - accel_filter) * 500.0f;
 }

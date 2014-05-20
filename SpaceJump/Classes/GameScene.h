@@ -14,7 +14,7 @@ class Hero;
 class PlayerData;
 class GamePlayerProfile;
 
-class GameScene : public CCLayerColor
+class GameScene : public LayerColor
 {
 public:
     ~GameScene();
@@ -23,7 +23,7 @@ public:
     virtual bool init(MultiplayerGameState *gameState);
     
     // there's no 'id' in cpp, so we recommend to return the class instance pointer
-    static cocos2d::CCScene* scene(MultiplayerGameState *gameState);
+    static cocos2d::Scene* createScene(MultiplayerGameState *gameState);
     
     static GameScene* create(MultiplayerGameState* gameState)
     {
@@ -39,21 +39,21 @@ public:
         }
     }
     
-	virtual void registerWithTouchDispatcher(void);
-	virtual void ccTouchEnded(CCTouch* touch, CCEvent* event);
-    virtual void didAccelerate(CCAcceleration* pAccelerationValue);
-	virtual bool ccTouchBegan(CCTouch* touch, CCEvent* event);
+    virtual void onEnter() override;
+    virtual bool onTouchBegan(Touch* touch, Event* unused_event);
+    virtual void onTouchEnded(Touch *touch, Event* unused_event);
+    virtual void onAcceleration(Acceleration* acc, Event* unused_event);
 
 private:
-    CCSize _screenSize;
-    CCSpriteBatchNode * _charactersBatchNode;
-    CCSpriteBatchNode * _gameBatchNode;
+    Size _screenSize;
+    SpriteBatchNode * _charactersBatchNode;
+    SpriteBatchNode * _gameBatchNode;
     MultiplayerGameState* _multiplayerGameState;
-    CCLabelBMFont* _scoreLabel;
+    Label* _scoreLabel;
     Hero *_hero;
-    CCPoint _heroPosition;
-	ccVertex2F _heroVelocity;
-	ccVertex2F _heroAcceleration;
+    Point _heroPosition;
+	Vertex2F _heroVelocity;
+	Vertex2F _heroAcceleration;
 	bool _heroLookingRight;
 
 	float _currentCloudY;
@@ -82,7 +82,7 @@ private:
 	void resetHero();
 	void resetBonus();
 	void jump();
-    void menuCallbackEndGame(CCObject* pSender);
+    void menuCallbackEndGame(Ref* pSender);
 };
 
 #endif /* defined(__GameScene__) */

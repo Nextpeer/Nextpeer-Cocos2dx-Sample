@@ -19,7 +19,7 @@ using namespace std;
 using namespace nextpeer;
 
 
-class MultiplayerMessage : public CCObject
+class MultiplayerMessage : public Ref
 {
 public:
     CC_SYNTHESIZE(MultiplayerMessageType, mType, Type);

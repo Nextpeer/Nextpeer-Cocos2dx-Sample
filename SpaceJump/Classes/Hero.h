@@ -9,7 +9,7 @@
 #include "PlayerSpriteProfile.h"
 #include "PlayerData.h"
 
-class Hero : public CCSprite
+class Hero : public Sprite
 {
 private:
     PlayerData *_playerData;

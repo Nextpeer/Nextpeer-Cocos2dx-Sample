@@ -13,7 +13,7 @@ USING_NS_CC;
 #include "PlayerData.h"
 #include "OpponentPositionHeightUpdate.h"
 
-class Opponent : public CCObject
+class Opponent : public Ref
 {
 private:
     PlayerData *_playerData;

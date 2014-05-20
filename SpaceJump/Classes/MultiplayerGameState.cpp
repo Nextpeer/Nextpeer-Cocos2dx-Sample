@@ -36,12 +36,12 @@ void MultiplayerGameState::reset()
         _opponentsSprite->removeAllObjects();
     }
     
-    CCNotificationCenter::sharedNotificationCenter()->removeAllObservers(this);
+    __NotificationCenter::getInstance()->removeAllObservers(this);
 }
 
 void MultiplayerGameState::listenForIncomingPackets()
 {
-    CCNotificationCenter::sharedNotificationCenter()->addObserver(this,
+    __NotificationCenter::getInstance()->addObserver(this,
                                                                   callfuncO_selector(MultiplayerGameState::incomingNextpeerDataPacket),
                                                                   NEXTPEER_NOTIFICATION_INCOMING_DATA_PACKET,
                                                                   NULL);
@@ -51,12 +51,12 @@ void MultiplayerGameState::addOpponent(PlayerData *opponent) {
     _opponentsData->setObject(opponent, opponent->getPlayerId());
 }
 
-CCArray* MultiplayerGameState::getAllOpponents()
+__Array* MultiplayerGameState::getAllOpponents()
 {
     if (_opponentsSprite == NULL || _opponentsSprite->count() <= 0) return NULL;
-    CCArray* opponents = CCArray::createWithCapacity(_opponentsSprite->count());
+    __Array* opponents = __Array::createWithCapacity(_opponentsSprite->count());
 
-    CCDictElement* dictElement = NULL;
+    DictElement* dictElement = NULL;
     CCDICT_FOREACH(_opponentsSprite, dictElement)
     {
         opponents->addObject((Opponent*)dictElement->getObject());
@@ -122,11 +122,11 @@ void MultiplayerGameState::applyOpponentIsReady(OpponentIsReadyMessage *ready)
 {
     string opponentId = ready->getSenderId();
     if (!_opponentsData->objectForKey(opponentId)) {
-        CCLog(">> Can't find opponent data for id %s", opponentId.c_str());
+//        CCLog(">> Can't find opponent data for id %s", opponentId.c_str());
         return; // this shouldn't happen
     }
     if (_opponentsSprite->objectForKey(opponentId)) {
-        CCLog(">> Found opponent sprite for id %s", opponentId.c_str());
+//        CCLog(">> Found opponent sprite for id %s", opponentId.c_str());
         return; // this shouldn't happen either
     }
     
@@ -137,7 +137,7 @@ void MultiplayerGameState::applyOpponentIsReady(OpponentIsReadyMessage *ready)
     _opponentsSprite->setObject(opponent, opponentId);
 }
 
-void MultiplayerGameState::incomingNextpeerDataPacket(CCObject *packet)
+void MultiplayerGameState::incomingNextpeerDataPacket(Ref *packet)
 {
     if (!CCNextpeer::getInstance()->isCurrentlyInTournament()) return;
     

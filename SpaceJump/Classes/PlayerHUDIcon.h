@@ -10,7 +10,7 @@
 USING_NS_CC;
 #include "PlayerSpriteProfile.h"
 
-class PlayerHUDIcon : public CCSprite
+class PlayerHUDIcon : public Sprite
 {
     private:
 	PlayerHUDIcon(GamePlayerProfile* playerProfile);

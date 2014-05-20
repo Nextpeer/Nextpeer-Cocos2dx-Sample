@@ -30,30 +30,30 @@ NextpeerDelegate::~NextpeerDelegate()
 
 void NextpeerDelegate::registerForEvents()
 {
-    CCNotificationCenter::sharedNotificationCenter()->addObserver(this,
-                                                                  callfuncO_selector(NextpeerDelegate::nextpeerDidStartTournament),
-                                                                  NEXTPEER_NOTIFICATION_TOURNAMENT_STARTED,
-                                                                  NULL);
-    CCNotificationCenter::sharedNotificationCenter()->addObserver(this,
-                                                                  callfuncO_selector(NextpeerDelegate::nextpeerDidEndTournament),
-                                                                  NEXTPEER_NOTIFICATION_TOURNAMENT_ENDED,
-                                                                  NULL);
+    __NotificationCenter::getInstance()->addObserver(this,
+                                                     callfuncO_selector(NextpeerDelegate::nextpeerDidStartTournament),
+                                                     NEXTPEER_NOTIFICATION_TOURNAMENT_STARTED,
+                                                     NULL);
+    __NotificationCenter::getInstance()->addObserver(this,
+                                                     callfuncO_selector(NextpeerDelegate::nextpeerDidEndTournament),
+                                                     NEXTPEER_NOTIFICATION_TOURNAMENT_ENDED,
+                                                     NULL);
 }
 
 void NextpeerDelegate::unhookEvents()
 {
-    CCNotificationCenter::sharedNotificationCenter()->removeAllObservers(this);
+    CCNotificationCenter::getInstance()->removeAllObservers(this);
 }
 
-void NextpeerDelegate::nextpeerDidStartTournament(CCObject *startData)
+void NextpeerDelegate::nextpeerDidStartTournament(Ref *startData)
 {
-    CCLog("Nextpeer - received tournament start signal");
+ //   CCLog("Nextpeer - received tournament start signal");
 
     _currentGameState->reset();
     
     // Add opponents
     TournamentStartData* tournamentStartData = (TournamentStartData*)startData;
-    CCObject* it = NULL;
+    Ref* it = NULL;
     CCARRAY_FOREACH(tournamentStartData->players, it)
     {
         NextpeerPlayer *nextpeerPlayer = static_cast<NextpeerPlayer*>(it);
@@ -65,13 +65,13 @@ void NextpeerDelegate::nextpeerDidStartTournament(CCObject *startData)
     Rand::seed(tournamentStartData->tournamentRandomSeed);
     
     // create a scene. it's an autorelease object
-    CCDirector::sharedDirector()->replaceScene(GameScene::scene(_currentGameState));
+    CCDirector::getInstance()->replaceScene(GameScene::createScene(_currentGameState));
 }
 
-void NextpeerDelegate::nextpeerDidEndTournament()
+void NextpeerDelegate::nextpeerDidEndTournament(Ref *endData)
 {
-    CCLog("Nextpeer - received tournament end signal");
+//    CCLog("Nextpeer - received tournament end signal");
     
     // create a scene. it's an autorelease object
-    CCDirector::sharedDirector()->replaceScene(MainMenuScene::scene());
+    CCDirector::getInstance()->replaceScene(MainMenuScene::createScene());
 }

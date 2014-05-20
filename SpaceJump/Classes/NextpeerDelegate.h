@@ -11,16 +11,15 @@ USING_NS_CC;
 
 #include "MultiplayerGameState.h"
 
-class NextpeerDelegate : public CCObject
+class NextpeerDelegate : public Ref
 {
 public:
     void registerForEvents();
     void unhookEvents();
     
     // Event calls
-    void nextpeerDidStartTournament(CCObject* startData);
-    void nextpeerDidEndTournament();
-    void nextpeerDidReceiveDataPacket(CCObject* packetData);
+    void nextpeerDidStartTournament(Ref* startData);
+    void nextpeerDidEndTournament(Ref *endData);
     
     NextpeerDelegate();
     virtual ~NextpeerDelegate();

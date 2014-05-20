@@ -21,7 +21,7 @@ Hero::Hero(GamePlayerProfile *profile, PlayerData *data) {
     _profile = profile;
     _profile->retain();
     
-	this->setAnchorPoint(ccp(0.5f, 1.0f));
+	this->setAnchorPoint(Point(0.5f, 1.0f));
 }
 
 Hero* Hero::create()
@@ -45,15 +45,15 @@ Hero* Hero::create()
 }
 
 void Hero::showReadyAnimation() {
-    setDisplayFrame(CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(_profile->spriteFrontName()));
+    setDisplayFrame(CCSpriteFrameCache::getInstance()->getSpriteFrameByName(_profile->spriteFrontName()));
 }
 
 void Hero::showJumpAnimation() {
-    setDisplayFrame(CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(_profile->spriteJumpName()));
+    setDisplayFrame(CCSpriteFrameCache::getInstance()->getSpriteFrameByName(_profile->spriteJumpName()));
 }
 
 void Hero::showHurtAnimation() {
-    setDisplayFrame(CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(_profile->spriteHurtName()));
+    setDisplayFrame(CCSpriteFrameCache::getInstance()->getSpriteFrameByName(_profile->spriteHurtName()));
 }
 
 float Hero::getWorldPositionHeight() const {

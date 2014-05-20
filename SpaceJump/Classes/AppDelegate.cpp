@@ -12,29 +12,30 @@ USING_NS_CC;
 
 typedef struct tagResource
 {
-    cocos2d::CCSize size;
+    Size size;
     char directory[100];
 }Resource;
 
-static Resource smallResource  =  { cocos2d::CCSizeMake(320, 480),   "iphone" };
-static Resource mediumResource =  { cocos2d::CCSizeMake(768, 1024),  "ipad"   };
-static Resource largeResource  =  { cocos2d::CCSizeMake(1536, 2048), "ipadhd" };
-static cocos2d::CCSize designResolutionSize = cocos2d::CCSizeMake(320, 480);
+static Resource smallResource  =  { Size(320, 480),   "iphone" };
+static Resource mediumResource =  { Size(768, 1024),  "ipad"   };
+static Resource largeResource  =  { Size(1536, 2048), "ipadhd" };
+static Size designResolutionSize = Size(320.0, 480.0);
 
 AppDelegate::AppDelegate() {}
 
 AppDelegate::~AppDelegate() {}
-
 bool AppDelegate::applicationDidFinishLaunching() {
     // initialize director
-    CCDirector* pDirector = CCDirector::sharedDirector();
-    CCEGLView* pEGLView = CCEGLView::sharedOpenGLView();
+    auto director = Director::getInstance();
+    auto glview = director->getOpenGLView();
+    if(!glview) {
+        glview = GLView::create("NextpeerSample");
+        director->setOpenGLView(glview);
+    }
 
-    pDirector->setOpenGLView(pEGLView);
-    
     // Set the design resolution
-    pEGLView->setDesignResolutionSize(designResolutionSize.width, designResolutionSize.height, kResolutionExactFit);
-    CCSize frameSize = pEGLView->getFrameSize();
+    glview->setDesignResolutionSize(designResolutionSize.width, designResolutionSize.height, ResolutionPolicy::EXACT_FIT);
+    Size frameSize = glview->getFrameSize();
     std::vector<std::string> searchPath;
     
     // In this demo, we select resource according to the frame's height.
@@ -58,29 +59,33 @@ bool AppDelegate::applicationDidFinishLaunching() {
         searchPath.push_back(smallResource.directory);
         scaleFactor = 1.0f;
     }
-    pDirector->setContentScaleFactor(scaleFactor);
+    director->setContentScaleFactor(scaleFactor);
     
-    CCFileUtils::sharedFileUtils()->setSearchPaths(searchPath);
+    FileUtils::getInstance()->setSearchPaths(searchPath);
+    
     // set FPS. the default value is 1.0/60 if you don't call this
-    pDirector->setAnimationInterval(1.0 / 60);
-        
+    director->setAnimationInterval(1.0 / 60);
+
+    // create a scene. it's an autorelease object
+    auto scene = MainMenuScene::createScene();
+    
     // Init Nextpeer
     this->initializeNextpeer();
     
     // run
-    pDirector->runWithScene(MainMenuScene::scene());
+    director->runWithScene(scene);
 
     return true;
 }
 
 // This function will be called when the app is inactive. When comes a phone call,it's be invoked too
 void AppDelegate::applicationDidEnterBackground() {
-    CCDirector::sharedDirector()->stopAnimation();
+    Director::getInstance()->stopAnimation();
 }
 
 // this function will be called when the app is active again
 void AppDelegate::applicationWillEnterForeground() {
-    CCDirector::sharedDirector()->startAnimation();
+    Director::getInstance()->startAnimation();
 }
 
 void AppDelegate::initializeNextpeer()

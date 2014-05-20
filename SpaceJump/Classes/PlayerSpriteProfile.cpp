@@ -163,8 +163,8 @@ GamePlayerProfile* GamePlayerProfileFactory::createProfileByTypeOrNull(GamePlaye
     return NULL;
 }
 
-CCArray* GamePlayerProfileFactory::allGamePlayerProfiles() {
-    CCArray* profiles = CCArray::create();
+__Array* GamePlayerProfileFactory::allGamePlayerProfiles() {
+    __Array* profiles = __Array::create();
     profiles->addObject(createProfileByTypeOrNull(kGamePlayerProfileGreen));
     profiles->addObject(createProfileByTypeOrNull(kGamePlayerProfilePink));
     profiles->addObject(createProfileByTypeOrNull(kGamePlayerProfileBlue));
@@ -178,7 +178,7 @@ CCArray* GamePlayerProfileFactory::allGamePlayerProfiles() {
 #define GAME_USER_PROFILE_NOT_FOUND   -999
 GamePlayerProfileType CurrentPlayerGameProfile::getCurrentUserProfile() {
     
-    int profileTypeAsInt = CCUserDefault::sharedUserDefault()->getIntegerForKey(KEY_OF_GAME_USER_PROFILE, GAME_USER_PROFILE_NOT_FOUND);
+    int profileTypeAsInt = UserDefault::getInstance()->getIntegerForKey(KEY_OF_GAME_USER_PROFILE, GAME_USER_PROFILE_NOT_FOUND);
     
     GamePlayerProfileType profileType;
     
@@ -196,7 +196,7 @@ GamePlayerProfileType CurrentPlayerGameProfile::getCurrentUserProfile() {
 }
 
 void CurrentPlayerGameProfile::setCurrentUserProfile(GamePlayerProfileType profileType) {
-    CCUserDefault *userDefaults = CCUserDefault::sharedUserDefault();
+    UserDefault *userDefaults = UserDefault::getInstance();
     userDefaults->setIntegerForKey(KEY_OF_GAME_USER_PROFILE, profileType);
     userDefaults->flush();
 }
