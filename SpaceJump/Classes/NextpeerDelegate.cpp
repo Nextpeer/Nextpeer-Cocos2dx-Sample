@@ -42,7 +42,7 @@ void NextpeerDelegate::registerForEvents()
 
 void NextpeerDelegate::unhookEvents()
 {
-    CCNotificationCenter::getInstance()->removeAllObservers(this);
+    __NotificationCenter::getInstance()->removeAllObservers(this);
 }
 
 void NextpeerDelegate::nextpeerDidStartTournament(Ref *startData)
@@ -65,7 +65,7 @@ void NextpeerDelegate::nextpeerDidStartTournament(Ref *startData)
     Rand::seed(tournamentStartData->tournamentRandomSeed);
     
     // create a scene. it's an autorelease object
-    CCDirector::getInstance()->replaceScene(GameScene::createScene(_currentGameState));
+    Director::getInstance()->replaceScene(GameScene::createScene(_currentGameState));
 }
 
 void NextpeerDelegate::nextpeerDidEndTournament(Ref *endData)
@@ -73,5 +73,5 @@ void NextpeerDelegate::nextpeerDidEndTournament(Ref *endData)
 //    CCLog("Nextpeer - received tournament end signal");
     
     // create a scene. it's an autorelease object
-    CCDirector::getInstance()->replaceScene(MainMenuScene::createScene());
+    Director::getInstance()->replaceScene(MainMenuScene::createScene());
 }
