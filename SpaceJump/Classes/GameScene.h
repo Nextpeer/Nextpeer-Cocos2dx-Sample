@@ -50,6 +50,8 @@ private:
     CCSpriteBatchNode * _gameBatchNode;
     MultiplayerGameState* _multiplayerGameState;
     CCLabelBMFont* _scoreLabel;
+    CCLabelTTF *_waitForPlayersLabel;
+    
     Hero *_hero;
     CCPoint _heroPosition;
 	ccVertex2F _heroVelocity;
@@ -83,6 +85,7 @@ private:
 	void resetBonus();
 	void jump();
     void menuCallbackEndGame(CCObject* pSender);
+    void nextpeerDidReceiveSynchronizedEvent(CCString* eventName);
 };
 
 #endif /* defined(__GameScene__) */

@@ -34,6 +34,9 @@ enum
 #define kMinBonusStep		20
 #define kMaxBonusStep		40
 #define HUD_ITEMS_SPACING 10.0f
+#define kStartGameSyncEventName "com.nextpeer.cocos2dx.sample.syncevet.startgame"
+#define kStartGameSyncEventTimeout 10.0
+#define kWaitingForOtherPlayers "Waiting for other players..."
 
 CCScene* GameScene::scene(MultiplayerGameState *gameState)
 {
@@ -58,6 +61,7 @@ CCScene* GameScene::scene(MultiplayerGameState *gameState)
 
 GameScene::~GameScene()
 {
+    CCNotificationCenter::sharedNotificationCenter()->removeAllObservers(this);
     CC_SAFE_RELEASE_NULL(_hero);
     CC_SAFE_RELEASE_NULL(_multiplayerGameState);
 }
@@ -134,8 +138,26 @@ void GameScene::createScreen () {
     // Enable accelerometer events
     setAccelerometerEnabled(true);
     
+    _waitForPlayersLabel = CCLabelTTF::create(kWaitingForOtherPlayers, "Thonburi", 20.0);
+    _waitForPlayersLabel->setPosition(ccp(_screenSize.width/2, _screenSize.height/2));
+    this->addChild(_waitForPlayersLabel);
+    
     // Let the other clients know that this player is in the game
     _multiplayerGameState->dispatchIsReadyForHero(_hero);
+    
+    CCNotificationCenter::sharedNotificationCenter()->addObserver(this,
+                                                                  callfuncO_selector(GameScene::nextpeerDidReceiveSynchronizedEvent),
+                                                                  NEXTPEER_NOTIFICATION_RECEIVE_SYNCHRONIZED_EVENT,
+                                                                  NULL);
+    CCNextpeer::getInstance()->registerToSynchronizedEvent(kStartGameSyncEventName, kStartGameSyncEventTimeout);
+    
+}
+
+
+void GameScene::nextpeerDidReceiveSynchronizedEvent(CCString* eventName)
+{
+    _waitForPlayersLabel->cocos2d::CCNode::setVisible(false);
+    removeChild(_waitForPlayersLabel);
     
     // Start the game
     startGame();
