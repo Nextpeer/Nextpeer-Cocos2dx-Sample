@@ -34,6 +34,9 @@ enum
 #define kMinBonusStep		20
 #define kMaxBonusStep		40
 #define HUD_ITEMS_SPACING 10.0f
+#define kStartGameSyncEventName "com.nextpeer.cocos2dx.sample.syncevet.startgame"
+#define kStartGameSyncEventTimeout 10.0
+#define kWaitingForOtherPlayers "Waiting for other players..."
 
 Scene* GameScene::createScene(MultiplayerGameState *gameState)
 {
@@ -58,6 +61,7 @@ Scene* GameScene::createScene(MultiplayerGameState *gameState)
 
 GameScene::~GameScene()
 {
+    __NotificationCenter::getInstance()->removeAllObservers(this);
     Device::setAccelerometerEnabled(false);
     CC_SAFE_RELEASE_NULL(_hero);
     CC_SAFE_RELEASE_NULL(_multiplayerGameState);
@@ -148,13 +152,29 @@ void GameScene::createScreen () {
     //create main loop
     this->schedule(schedule_selector(GameScene::update));
     
+    _waitForPlayersLabel = Label::createWithSystemFont(kWaitingForOtherPlayers, "Thonburi", 20.0);
+    _waitForPlayersLabel->setPosition(Point(_screenSize.width/2, _screenSize.height/2));
+    this->addChild(_waitForPlayersLabel);
+    
     // Let the other clients know that this player is in the game
     _multiplayerGameState->dispatchIsReadyForHero(_hero);
+    
+    // Register for to a synchronized event. This will make sure that the game will start at the same time for all players.
+    __NotificationCenter::getInstance()->addObserver(this,
+                                                     callfuncO_selector(GameScene::nextpeerDidReceiveSynchronizedEvent),
+                                                     NEXTPEER_NOTIFICATION_RECEIVE_SYNCHRONIZED_EVENT,
+                                                     NULL);
+    CCNextpeer::getInstance()->registerToSynchronizedEvent(kStartGameSyncEventName, kStartGameSyncEventTimeout);
+}
+
+void GameScene::nextpeerDidReceiveSynchronizedEvent(Ref* eventName)
+{
+    _waitForPlayersLabel->cocos2d::CCNode::setVisible(false);
+    removeChild(_waitForPlayersLabel);
     
     // Start the game
     startGame();
 }
-
 void GameScene::update(float dt)
 {
 	// Update the player x position based on velocity and delta time

@@ -54,6 +54,7 @@ private:
     Point _heroPosition;
 	Vertex2F _heroVelocity;
 	Vertex2F _heroAcceleration;
+    Label *_waitForPlayersLabel;
 	bool _heroLookingRight;
 
 	float _currentCloudY;
@@ -83,6 +84,7 @@ private:
 	void resetBonus();
 	void jump();
     void menuCallbackEndGame(Ref* pSender);
+    void nextpeerDidReceiveSynchronizedEvent(Ref* eventName);
 };
 
 #endif /* defined(__GameScene__) */
