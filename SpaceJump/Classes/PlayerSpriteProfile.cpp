@@ -184,7 +184,7 @@ GamePlayerProfileType CurrentPlayerGameProfile::getCurrentUserProfile() {
     
     // Profile was not found -> randomize one & persist it.
     if (profileTypeAsInt == GAME_USER_PROFILE_NOT_FOUND) {
-        profileTypeAsInt = random()%GamePlayerProfileTypeMax;
+        profileTypeAsInt = cocos2d::random(0, RAND_MAX)%GamePlayerProfileTypeMax;
         profileType = static_cast<GamePlayerProfileType>(profileTypeAsInt);
         setCurrentUserProfile(profileType);
     }

@@ -29,7 +29,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     auto director = Director::getInstance();
     auto glview = director->getOpenGLView();
     if(!glview) {
-        glview = GLView::create("NextpeerSample");
+        glview = GLViewImpl::create("NextpeerSample");
         director->setOpenGLView(glview);
     }
 
