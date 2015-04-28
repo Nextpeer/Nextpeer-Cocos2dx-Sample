@@ -10,33 +10,33 @@
 	<string>NextpeerSample</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>B8D96072-DAD1-4142-87C2-E8494762336E</key>
+		<key>1D27A8A24D6A1FF7370CA8A174B694608DB1114A</key>
 		<string>https://github.com/Nextpeer/Nextpeer-Cocos2dx</string>
-		<key>F360433F-5FCB-465A-AA07-E2B62CB88BC4</key>
+		<key>9238676F74E4ABC3F62C8010F100F9DCDF5779E8</key>
 		<string>https://github.com/Nextpeer/Nextpeer-Cocos2dx-Sample</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>SpaceJump/proj.ios/NextpeerSample.xcodeproj/project.xcworkspace</string>
+	<string>SpaceJump/proj.ios/NextpeerSample.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>B8D96072-DAD1-4142-87C2-E8494762336E</key>
-		<string>../../../Classes/Nextpeer</string>
-		<key>F360433F-5FCB-465A-AA07-E2B62CB88BC4</key>
+		<key>1D27A8A24D6A1FF7370CA8A174B694608DB1114A</key>
+		<string>../../../..SpaceJump/Classes/Nextpeer/</string>
+		<key>9238676F74E4ABC3F62C8010F100F9DCDF5779E8</key>
 		<string>../../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/Nextpeer/Nextpeer-Cocos2dx-Sample</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>F360433F-5FCB-465A-AA07-E2B62CB88BC4</string>
+	<string>9238676F74E4ABC3F62C8010F100F9DCDF5779E8</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>B8D96072-DAD1-4142-87C2-E8494762336E</string>
+			<string>1D27A8A24D6A1FF7370CA8A174B694608DB1114A</string>
 			<key>IDESourceControlWCCName</key>
 			<string>Nextpeer</string>
 		</dict>
@@ -44,7 +44,7 @@
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>F360433F-5FCB-465A-AA07-E2B62CB88BC4</string>
+			<string>9238676F74E4ABC3F62C8010F100F9DCDF5779E8</string>
 			<key>IDESourceControlWCCName</key>
 			<string>Nextpeer-Cocos2dx-Sample</string>
 		</dict>

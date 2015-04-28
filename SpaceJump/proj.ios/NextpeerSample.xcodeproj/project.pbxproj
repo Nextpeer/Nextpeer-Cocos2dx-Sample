@@ -16,6 +16,7 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
+		4E1534981AEFBA33002A77D1 /* NPResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4E1534971AEFBA33002A77D1 /* NPResources.bundle */; };
 		4E1767AC19210E990055A4A1 /* NextpeerTournamentSupport.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4E1767AB19210E990055A4A1 /* NextpeerTournamentSupport.cpp */; };
 		4E200E1918B4AF4600730660 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E200E1418B4AF4600730660 /* Default-568h@2x.png */; };
 		4E200E1C18B4AF4600730660 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E200E1718B4AF4600730660 /* Default.png */; };
@@ -58,9 +59,7 @@
 		4EC4D0A618B64B50003B97D9 /* Rand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4EC4CF2918B64B4E003B97D9 /* Rand.cpp */; };
 		4EC4D0A718B64B50003B97D9 /* Nextpeer_iOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4EC4CF2D18B64B4E003B97D9 /* Nextpeer_iOS.mm */; };
 		4EC4D0A818B64B50003B97D9 /* Nextpeer_iOSDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4EC4CF2F18B64B4E003B97D9 /* Nextpeer_iOSDelegate.mm */; };
-		4EC4D1E718B64B50003B97D9 /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = 4EC4D09318B64B50003B97D9 /* CHANGELOG.md */; };
 		4EC4D1E818B64B50003B97D9 /* Nextpeer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EC4D09418B64B50003B97D9 /* Nextpeer.framework */; };
-		4EC4D1EC18B64B50003B97D9 /* NPResources_iPad_iPhone_Portrait.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4EC4D09918B64B50003B97D9 /* NPResources_iPad_iPhone_Portrait.bundle */; };
 		4EC4D1F618B65625003B97D9 /* libcocos2dx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EC4D1F518B65130003B97D9 /* libcocos2dx.a */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712461292920000B8313A /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB212928DE900B8313A /* libxml2.dylib */; };
@@ -106,6 +105,7 @@
 		1D6058910D05DD3D006BFB54 /* SpaceJump.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpaceJump.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		4E1534971AEFBA33002A77D1 /* NPResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = NPResources.bundle; sourceTree = "<group>"; };
 		4E1767AA19210E990055A4A1 /* NextpeerTournamentSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NextpeerTournamentSupport.h; sourceTree = "<group>"; };
 		4E1767AB19210E990055A4A1 /* NextpeerTournamentSupport.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NextpeerTournamentSupport.cpp; sourceTree = "<group>"; };
 		4E200E1418B4AF4600730660 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = SOURCE_ROOT; };
@@ -173,9 +173,7 @@
 		4EC4CF2D18B64B4E003B97D9 /* Nextpeer_iOS.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Nextpeer_iOS.mm; sourceTree = "<group>"; };
 		4EC4CF2E18B64B4E003B97D9 /* Nextpeer_iOSDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Nextpeer_iOSDelegate.h; sourceTree = "<group>"; };
 		4EC4CF2F18B64B4E003B97D9 /* Nextpeer_iOSDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Nextpeer_iOSDelegate.mm; sourceTree = "<group>"; };
-		4EC4D09318B64B50003B97D9 /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGELOG.md; sourceTree = "<group>"; };
 		4EC4D09418B64B50003B97D9 /* Nextpeer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Nextpeer.framework; sourceTree = "<group>"; };
-		4EC4D09918B64B50003B97D9 /* NPResources_iPad_iPhone_Portrait.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = NPResources_iPad_iPhone_Portrait.bundle; sourceTree = "<group>"; };
 		4EC4D1F018B6512F003B97D9 /* cocos2dx.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = cocos2dx.xcodeproj; path = "../../cocos2d-x-2.2/cocos2dx/proj.ios/cocos2dx.xcodeproj"; sourceTree = "<group>"; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB212928DE900B8313A /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
@@ -454,19 +452,10 @@
 		4EC4D09218B64B50003B97D9 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				4EC4D09318B64B50003B97D9 /* CHANGELOG.md */,
+				4E1534971AEFBA33002A77D1 /* NPResources.bundle */,
 				4EC4D09418B64B50003B97D9 /* Nextpeer.framework */,
-				4EC4D09618B64B50003B97D9 /* Resources */,
 			);
 			path = iOS;
-			sourceTree = "<group>";
-		};
-		4EC4D09618B64B50003B97D9 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				4EC4D09918B64B50003B97D9 /* NPResources_iPad_iPhone_Portrait.bundle */,
-			);
-			path = Resources;
 			sourceTree = "<group>";
 		};
 		4EC4D1F118B6512F003B97D9 /* Products */ = {
@@ -580,7 +569,6 @@
 				4EC4CF0718B61B46003B97D9 /* Icon-72@2x.png in Resources */,
 				4E200E1918B4AF4600730660 /* Default-568h@2x.png in Resources */,
 				4EC4CEE118B51A93003B97D9 /* iphone in Resources */,
-				4EC4D1E718B64B50003B97D9 /* CHANGELOG.md in Resources */,
 				4EC4CF0418B61B46003B97D9 /* Icon-60.png in Resources */,
 				4EC4CF0518B61B46003B97D9 /* Icon-60@2x.png in Resources */,
 				4E200E1C18B4AF4600730660 /* Default.png in Resources */,
@@ -590,10 +578,10 @@
 				4EC4CF0318B61B46003B97D9 /* Icon-40@2x.png in Resources */,
 				4EC4CF0A18B61B46003B97D9 /* Icon-Small-50.png in Resources */,
 				4EC4CF0618B61B46003B97D9 /* Icon-72.png in Resources */,
+				4E1534981AEFBA33002A77D1 /* NPResources.bundle in Resources */,
 				4EC4CF0818B61B46003B97D9 /* Icon-76.png in Resources */,
 				4EC4CF0918B61B46003B97D9 /* Icon-76@2x.png in Resources */,
 				4EC4CF0D18B61B46003B97D9 /* Icon-Small@2x.png in Resources */,
-				4EC4D1EC18B64B50003B97D9 /* NPResources_iPad_iPhone_Portrait.bundle in Resources */,
 				4EC4CF0C18B61B46003B97D9 /* Icon-Small.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
