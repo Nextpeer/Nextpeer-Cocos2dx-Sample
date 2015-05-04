@@ -20,7 +20,7 @@
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>1D27A8A24D6A1FF7370CA8A174B694608DB1114A</key>
-		<string>../../../..SpaceJump/Classes/Nextpeer/</string>
+		<string>../../../../SpaceJump/Classes/Nextpeer/</string>
 		<key>9238676F74E4ABC3F62C8010F100F9DCDF5779E8</key>
 		<string>../../../..</string>
 	</dict>
