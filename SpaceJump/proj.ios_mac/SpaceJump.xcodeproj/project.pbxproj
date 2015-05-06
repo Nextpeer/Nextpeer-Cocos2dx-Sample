@@ -687,7 +687,8 @@
 				COMPRESS_PNG_FILES = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/Itamar/Dev/Nextpeer/Nextpeer-Cocos2dx-Sample/SpaceJump/Classes/Nextpeer/Nextpeer-Cocos2D-X/SDK/iOS",
+					"$(SRCROOT)",
+					"\"$(SRCROOT)/../Classes/Nextpeer/Nextpeer-Cocos2D-X/SDK/iOS\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
@@ -728,7 +729,8 @@
 				COMPRESS_PNG_FILES = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/Itamar/Dev/Nextpeer/Nextpeer-Cocos2dx-Sample/SpaceJump/Classes/Nextpeer/Nextpeer-Cocos2D-X/SDK/iOS",
+					"$(SRCROOT)",
+					"\"$(SRCROOT)/../Classes/Nextpeer/Nextpeer-Cocos2D-X/SDK/iOS\"",
 				);
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
