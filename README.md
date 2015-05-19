@@ -9,7 +9,7 @@ Feel free to contact us on any question. [support@nextpeer.com](mailto:support@n
 ## Trying it out
  Pull the sample and its **submodules** from GitHub:
  
-	`git clone --recursive git@github.com:Nextpeer/Nextpeer-Cocos2dx-Sample.git`
+	`git clone --recursive https://github.com/Nextpeer/Nextpeer-Cocos2dx-Sample.git`
 
 ##Android port
 In order to test the Android project, you'll be have to set the C++ build enviroment variables to the right location.
