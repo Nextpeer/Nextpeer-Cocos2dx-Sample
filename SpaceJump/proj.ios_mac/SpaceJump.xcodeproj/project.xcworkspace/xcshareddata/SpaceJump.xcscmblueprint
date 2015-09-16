@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "9238676F74E4ABC3F62C8010F100F9DCDF5779E8",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "9238676F74E4ABC3F62C8010F100F9DCDF5779E8" : 0,
+    "1D27A8A24D6A1FF7370CA8A174B694608DB1114A" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "49AAC4D0-93A2-4CDF-A151-625374341F9B",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "9238676F74E4ABC3F62C8010F100F9DCDF5779E8" : "Nextpeer-Cocos2dx-Sample",
+    "1D27A8A24D6A1FF7370CA8A174B694608DB1114A" : "Nextpeer-Cocos2dx-Sample\/SpaceJump\/Classes\/Nextpeer"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "SpaceJump",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "SpaceJump\/proj.ios_mac\/SpaceJump.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/Nextpeer\/Nextpeer-Cocos2dx",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "1D27A8A24D6A1FF7370CA8A174B694608DB1114A"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/Nextpeer\/Nextpeer-Cocos2dx-Sample",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "9238676F74E4ABC3F62C8010F100F9DCDF5779E8"
+    }
+  ]
+}
